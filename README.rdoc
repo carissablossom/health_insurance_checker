@@ -1,28 +1,22 @@
-== README
+== Backend Coding Challenge - Health Insurance Checker
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The challenge was to build the backend for a mobile app that allows a user to check their health insurance coverage. I was to only implement the server-side API.
 
-Things you may want to cover:
+The app will allow someone to easily check their health insurance coverage. The user will input her name, date of birth, insurance company name, and insurance member id. The app will return the insurance plan’s information and the copay/coinsurance for in-network and out-of-network of two medical services: a physician sick visit and a physician well visit.
 
-* Ruby version
+I was instructed to use the Eligible Coverage API to retrieve the patient's coverage information (API key below). In production, the Eligible API takes 7 seconds on average to respond, and can take up to 30 seconds. The service codes for a physician sick-visit and well-visit are BY and BZ, respectively.
 
-* System dependencies
+Issues in the process: 
+- The API Key I was given to access the Eligible Coverage API was incorrect so I wasn't actually able to receive responses, even in 'test' mode. I used the example response given with the challenge to work around this, so that if they API KEY is changed, the app should return the desired information. 
+- Provider NPI code: this is a required field for returning coverage and is unique to the health care professional requesting the information. Documentation suggests this should actually be an input field as there is no way to query a doctor's npi code from their name (you need to provide an enrollment npi at minimum). I hardcoded this as a number for test purposes, but would presumably add NPI number as an additional field on the form. 
 
-* Configuration
+Challenges: 
+- To handle the long load time, I added a simple wait message that appeared on the screen while the ajax call was in process, and disappeared when the result was returned
+- Sometimes the 'sick visit' or 'well visit' information does not provide the coverage percentage, and just instead gives a coverage status message. In cases where coverage percentage is not provided, I display the coverage status instead. 
 
-* Database creation
+Resources
 
-* Database initialization
+Eligible Coverage API: https://eligible.com/reference/
+Eligible API Ruby gem (You’ll use Eligible::Coverage.get): https://github.com/eligible/eligible-ruby
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
