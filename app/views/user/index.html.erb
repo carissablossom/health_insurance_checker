@@ -1,0 +1,17 @@
+<h1>MediCheck</h1>
+<p>Please input your information to verify your medical insurance:</p>
+
+<%= form_tag({controller: 'user', action: 'results', method: "POST", remote: true}, {class: "insurance_form"}) do %>
+  <%= label_tag(:q, "Name: ") %>
+  <%= text_field_tag(:first_name) %>
+  <%= text_field_tag(:last_name) %>
+  <%= label_tag(:q, "Birthday: ") %>
+  <%= date_field(:birthday, :born_on) %>
+  <%= label_tag(:q, "Insurance Provider: ") %>
+  <%= text_field_tag(:insurance_provider) %>
+  <%= label_tag(:q, "Insurance Member Id: ") %>
+  <%= text_field_tag(:insurance_member_id) %>
+  <%= submit_tag("Verify") %>
+<% end %>
+
+<div id="verification-result"></div>

@@ -1,0 +1,26 @@
+<h2>Verification Results</h2>
+<% if @results %>
+  <div>
+    <p>
+      Plan Name: <%=  @results[:plan_name] %>
+    </p>
+    <p>
+      Plan Start Date: <%= @results[:start_date] %>
+    </p>
+    <p>
+      Plan End Date: <%=  @results[:end_date] %>
+    </p>
+    <p>
+      Physician - well visit: <%=  @results[:well_visit] %>
+    </p>
+    <p>
+      Physician - sick visit: <%= @results[:sick_visit] %>
+    </p>
+  </div>
+<% else %>
+  <div>
+    <p>
+      "We were unable to verify your insurance information. Please check your information and try again."
+    </p>
+  </div>
+<% end %>
